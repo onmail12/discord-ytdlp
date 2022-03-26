@@ -7,13 +7,13 @@ def getYtFileName(ytLink):
 
 
 def upload(fileName):
-    cmd = './rclone copy "{}" GDrive:'.format(fileName)
+    cmd = './rclone copy "{}" GDrive:/yt-dlp/'.format(fileName)
     print("upload " + cmd)
     return str(os.popen(cmd).read())
 
 
 def getDownloadLink(fileName):
-    cmd = './rclone link GDrive:"{}"'.format(fileName)
+    cmd = './rclone link GDrive:/yt-dlp/"{}"'.format(fileName)
     print("getDownloadLink ", cmd)
     return str(os.popen(cmd).read())
 
