@@ -36,8 +36,8 @@ def mainGetBest(ytLink):
 
 
 def mainGet720(ytLink):
-    cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [720]" -f b {}'.format(ytLink)
-    cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s.%(ext)s [720]" -f b* {}'.format(ytLink)
+    cmd = 'python3 yt-dlp -o "%(title)s 720.%(ext)s" -f b {}'.format(ytLink)
+    cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s 720.%(ext)s" -f b* {}'.format(ytLink)
     print(cmd)
     output = os.popen(cmd).read()
     fileName = os.popen(cmd2).read().strip("\n")
@@ -53,10 +53,10 @@ def mainGet720(ytLink):
 
 
 def mainGet144(ytLink):
-    cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [144]" -S "res:144" -f b {}'.format(
+    cmd = 'python3 yt-dlp -o "%(title)s 144.%(ext)s" -S "res:144" -f b {}'.format(
         ytLink
     )
-    fileName = 'python3 yt-dlp --get-filename -o "%(title)s.%(ext)s [144]" -S "res:144" -f b {}'.format(ytLink)
+    fileName = 'python3 yt-dlp --get-filename -o "%(title)s 144.%(ext)s" -S "res:144" -f b {}'.format(ytLink)
     print(cmd)
     output = os.popen(cmd).read()
     fileName = os.popen(cmd2).read().strip("\n")
@@ -72,10 +72,10 @@ def mainGet144(ytLink):
 
 
 def mainGet240(ytLink):
-    cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [240]" -S "res:240" -f b {}'.format(
+    cmd = 'python3 yt-dlp -o "%(title)s 360.%(ext)s" -S "res:240" -f b {}'.format(
         ytLink
     )
-    fileName = 'python3 yt-dlp --get-filename -o "%(title)s.%(ext)s [240]" -S "res:240" -f b {}'.format(ytLink)
+    fileName = 'python3 yt-dlp --get-filename -o "%(title)s 360.%(ext)s" -S "res:240" -f b {}'.format(ytLink)
     print(cmd)
     output = os.popen(cmd).read()
     fileName = os.popen(cmd2).read().strip("\n")
@@ -91,10 +91,10 @@ def mainGet240(ytLink):
 
 
 def mainGet360(ytLink):
-    cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [360]" -S "res:360" -f b {}'.format(
+    cmd = 'python3 yt-dlp -o "%(title)s 360.%(ext)s" -S "res:360" -f b {}'.format(
         ytLink
     )
-    fileName = 'python3 yt-dlp --get-filename -o "%(title)s.%(ext)s [360]" -S "res:360" -f b {}'.format(ytLink)
+    fileName = 'python3 yt-dlp --get-filename -o "%(title)s 360.%(ext)s" -S "res:360" -f b {}'.format(ytLink)
     print(cmd)
     output = os.popen(cmd).read()
     fileName = os.popen(cmd2).read().strip("\n")
@@ -110,10 +110,10 @@ def mainGet360(ytLink):
 
 
 def mainGet480(ytLink):
-    cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [480]" -S "res:480" -f b {}'.format(
+    cmd = 'python3 yt-dlp -o "%(title)s 480.%(ext)s" -S "res:480" -f b {}'.format(
         ytLink
     )
-    fileName = 'python3 yt-dlp --get-filename -o "%(title)s.%(ext)s [480]" -S "res:480" -f b {}'.format(ytLink)
+    cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s 480.%(ext)s" -S "res:480" -f b {}'.format(ytLink)
     print(cmd)
     output = os.popen(cmd).read()
     fileName = os.popen(cmd2).read().strip("\n")
