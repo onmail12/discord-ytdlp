@@ -19,10 +19,14 @@ def getDownloadLink(fileName):
 
 
 def mainGetBest(ytLink):
-    cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [best]"-f b* {}'.format(ytLink)
+    cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [best]" -f b* {}'.format(ytLink)
+    fileName = (
+        'python3 yt-dlp --get-filename -o "%(title)s.%(ext)s [best]" -f b* {}'.format(
+            ytLink
+        )
+    ).strip("\n")
     print(cmd)
     output = os.popen(cmd).read()
-    fileName = getYtFileName(ytLink)
     print("Downloaded!")
     upload(fileName)
     print("Uploaded as " + fileName)
@@ -36,9 +40,13 @@ def mainGetBest(ytLink):
 
 def mainGet720(ytLink):
     cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [720]" -f b {}'.format(ytLink)
+    fileName = (
+        'python3 yt-dlp --get-filename -o "%(title)s.%(ext)s [720]" -f b* {}'.format(
+            ytLink
+        )
+    ).strip("\n")
     print(cmd)
     output = os.popen(cmd).read()
-    fileName = getYtFileName(ytLink)
     print("Downloaded!")
     upload(fileName)
     print("Uploaded as " + fileName)
@@ -54,9 +62,13 @@ def mainGet144(ytLink):
     cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [144]" -S "res:144" -f b {}'.format(
         ytLink
     )
+    fileName = (
+        'python3 yt-dlp --get-filename -o "%(title)s.%(ext)s [144]" -S "res:144" -f b {}'.format(
+            ytLink
+        )
+    ).strip("\n")
     print(cmd)
     output = os.popen(cmd).read()
-    fileName = getYtFileName(ytLink)
     print("Downloaded!")
     upload(fileName)
     print("Uploaded as " + fileName)
@@ -72,9 +84,13 @@ def mainGet240(ytLink):
     cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [240]" -S "res:240" -f b {}'.format(
         ytLink
     )
+    fileName = (
+        'python3 yt-dlp --get-filename -o "%(title)s.%(ext)s [240]" -S "res:240" -f b {}'.format(
+            ytLink
+        )
+    ).strip("\n")
     print(cmd)
     output = os.popen(cmd).read()
-    fileName = getYtFileName(ytLink)
     print("Downloaded!")
     upload(fileName)
     print("Uploaded as " + fileName)
@@ -90,9 +106,13 @@ def mainGet360(ytLink):
     cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [360]" -S "res:360" -f b {}'.format(
         ytLink
     )
+    fileName = (
+        'python3 yt-dlp --get-filename -o "%(title)s.%(ext)s [360]" -S "res:360" -f b {}'.format(
+            ytLink
+        )
+    ).strip("\n")
     print(cmd)
     output = os.popen(cmd).read()
-    fileName = getYtFileName(ytLink)
     print("Downloaded!")
     upload(fileName)
     print("Uploaded as " + fileName)
@@ -108,9 +128,13 @@ def mainGet480(ytLink):
     cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [480]" -S "res:480" -f b {}'.format(
         ytLink
     )
+    fileName = (
+        'python3 yt-dlp --get-filename -o "%(title)s.%(ext)s [480]" -S "res:480" -f b {}'.format(
+            ytLink
+        )
+    ).strip("\n")
     print(cmd)
     output = os.popen(cmd).read()
-    fileName = getYtFileName(ytLink)
     print("Downloaded!")
     upload(fileName)
     print("Uploaded as " + fileName)
