@@ -35,7 +35,9 @@ def mainGet(ytLink):
 
 
 def mainGet144(ytLink):
-    cmd = 'python3 yt-dlp -o -S "res:144" "%(title)s.%(ext)s" -f b {}'.format(ytLink)
+    cmd = 'python3 yt-dlp -o "144 %(title)s.%(ext)s" -S "res:144" -f b {}'.format(
+        ytLink
+    )
     print(cmd)
     output = os.popen(cmd).read()
     fileName = getYtFileName(ytLink)
