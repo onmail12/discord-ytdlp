@@ -19,8 +19,8 @@ def getDownloadLink(fileName):
 
 
 def mainGetBest(ytLink):
-    cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [best]" -f b* {}'.format(ytLink)
-    cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s.%(ext)s [best]" -f b* {}'.format(ytLink)
+    cmd = 'python3 yt-dlp -o "%(title)s best.%(ext)s" -f b* {}'.format(ytLink)
+    cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s best.%(ext)s" -f b* {}'.format(ytLink)
     print(cmd)
     output = os.popen(cmd).read()
     fileName = os.popen(cmd2).read().strip("\n")
@@ -56,7 +56,7 @@ def mainGet144(ytLink):
     cmd = 'python3 yt-dlp -o "%(title)s 144.%(ext)s" -S "res:144" -f b {}'.format(
         ytLink
     )
-    fileName = 'python3 yt-dlp --get-filename -o "%(title)s 144.%(ext)s" -S "res:144" -f b {}'.format(ytLink)
+    cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s 144.%(ext)s" -S "res:144" -f b {}'.format(ytLink)
     print(cmd)
     output = os.popen(cmd).read()
     fileName = os.popen(cmd2).read().strip("\n")
@@ -75,7 +75,7 @@ def mainGet240(ytLink):
     cmd = 'python3 yt-dlp -o "%(title)s 360.%(ext)s" -S "res:240" -f b {}'.format(
         ytLink
     )
-    fileName = 'python3 yt-dlp --get-filename -o "%(title)s 360.%(ext)s" -S "res:240" -f b {}'.format(ytLink)
+    cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s 360.%(ext)s" -S "res:240" -f b {}'.format(ytLink)
     print(cmd)
     output = os.popen(cmd).read()
     fileName = os.popen(cmd2).read().strip("\n")
@@ -94,7 +94,7 @@ def mainGet360(ytLink):
     cmd = 'python3 yt-dlp -o "%(title)s 360.%(ext)s" -S "res:360" -f b {}'.format(
         ytLink
     )
-    fileName = 'python3 yt-dlp --get-filename -o "%(title)s 360.%(ext)s" -S "res:360" -f b {}'.format(ytLink)
+    cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s 360.%(ext)s" -S "res:360" -f b {}'.format(ytLink)
     print(cmd)
     output = os.popen(cmd).read()
     fileName = os.popen(cmd2).read().strip("\n")
