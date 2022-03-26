@@ -33,8 +33,8 @@ def mainGet(ytLink):
         print("File doesn't exist")
     return getDownloadLink(fileName)
 
+
 def mainGet144(ytLink):
-    def mainGet(ytLink):
     cmd = 'python3 yt-dlp -o -S "res:144" "%(title)s.%(ext)s" -f b {}'.format(ytLink)
     print(cmd)
     output = os.popen(cmd).read()
@@ -48,4 +48,3 @@ def mainGet144(ytLink):
     except:
         print("File doesn't exist")
     return getDownloadLink(fileName)
-
