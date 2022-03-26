@@ -19,7 +19,7 @@ async def on_message(message):
     if message.content.startswith("dl 1080 https://www.youtube.com/"):
         message.content = message.content.split()[1]
         print(message.content)
-        await message.channel.send(mainGet(message.content))
+        await message.channel.send(mainGetBest(message.content))
 
     elif message.content.startswith("dl 720 https://www.youtube.com/"):
         message.content = message.content.split()[2]
