@@ -19,7 +19,7 @@ def getDownloadLink(fileName):
 
 
 ytLink = input("Youtube: ")
-cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s" -f b {}'.format(ytLink)
+cmd = 'python3 yt-dlp -o "output\%(title)s.%(ext)s" -f b {}'.format(ytLink)
 print(cmd)
 output = os.popen(cmd).read()
 print("Done!")
