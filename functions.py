@@ -22,12 +22,16 @@ def mainGet(ytLink):
     cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s" -f b {}'.format(ytLink)
     print(cmd)
     output = os.popen(cmd).read()
-    print("Done!")
-    upload(getYtFileName(ytLink))
-    print("Upload Done!")
-    print("Uploaded as " + getYtFileName(ytLink))
+
+    fileName = getYtFileName(ytLink)
+
+    print("Downloaded!")
+    upload(fileName)
+    print("Uploaded")
+    print("Uploaded as " + fileName)
     try:
-        os.remove(getYtFileName(ytLink))
+        os.remove(fileName)
+        print("File Removed!")
     except:
-        print("The file does not exist")
-    return getDownloadLink(getYtFileName(ytLink))
+        print("File doesn't exist")
+    return getDownloadLink(fileName)
