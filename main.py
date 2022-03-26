@@ -1,33 +1,24 @@
-import os
+from functions import *
+import discord
+import random
+
+TOKEN = "OTU3MTQxNzMzNTc2MTc5NzUy.Yj6dtA.pobFo_Oi69lHNfBP9eYnCUxrX9M"
+client = discord.Client()
 
 
-def getYtFileName(ytLink):
-    cmd = 'python3 yt-dlp --get-filename -o "%(title)s.%(ext)s" -f b {}'.format(ytLink)
-    return str(os.popen(cmd).read()).strip("\n")
+@client.event
+async def on_ready():
+    print("BOT READY: {0.user}".format(client))
 
 
-def upload(fileName):
-    cmd = './rclone copy "{}" GDrive:'.format(fileName)
-    print("upload " + cmd)
-    return str(os.popen(cmd).read())
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+    if message.content.startswith("dl https://www.youtube.com/"):
+        message.content = message.content.strip("dl ")
+        print(message.content)
+        await message.channel.send(mainGet(message.content))
 
 
-def getDownloadLink(fileName):
-    cmd = './rclone link GDrive:"{}"'.format(fileName)
-    print("getDownloadLink ", cmd)
-    return str(os.popen(cmd).read())
-
-
-ytLink = input("Youtube: ")
-cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s" -f b {}'.format(ytLink)
-print(cmd)
-output = os.popen(cmd).read()
-print("Done!")
-upload(getYtFileName(ytLink))
-print("Upload Done!")
-print("Uploaded as " + getYtFileName(ytLink))
-print("Download here " + getDownloadLink(getYtFileName(ytLink)))
-try:
-    os.remove(getYtFileName(ytLink))
-except:
-    print("The file does not exist")
+client.run(TOKEN)
