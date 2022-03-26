@@ -18,8 +18,24 @@ def getDownloadLink(fileName):
     return str(os.popen(cmd).read())
 
 
-def mainGet(ytLink):
-    cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s" -S "res:1080" -f b {}'.format(ytLink)
+def mainGetBest(ytLink):
+    cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [best]"-f b* {}'.format(ytLink)
+    print(cmd)
+    output = os.popen(cmd).read()
+    fileName = getYtFileName(ytLink)
+    print("Downloaded!")
+    upload(fileName)
+    print("Uploaded as " + fileName)
+    try:
+        os.remove(fileName)
+        print("File Removed!")
+    except:
+        print("File doesn't exist")
+    return getDownloadLink(fileName)
+
+
+def mainGet720(ytLink):
+    cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [720]" -f b {}'.format(ytLink)
     print(cmd)
     output = os.popen(cmd).read()
     fileName = getYtFileName(ytLink)
@@ -35,7 +51,61 @@ def mainGet(ytLink):
 
 
 def mainGet144(ytLink):
-    cmd = 'python3 yt-dlp -o "144 %(title)s.%(ext)s" -S "res:144" -f b {}'.format(
+    cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [144]" -S "res:144" -f b {}'.format(
+        ytLink
+    )
+    print(cmd)
+    output = os.popen(cmd).read()
+    fileName = getYtFileName(ytLink)
+    print("Downloaded!")
+    upload(fileName)
+    print("Uploaded as " + fileName)
+    try:
+        os.remove(fileName)
+        print("File Removed!")
+    except:
+        print("File doesn't exist")
+    return getDownloadLink(fileName)
+
+
+def mainGet240(ytLink):
+    cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [240]" -S "res:240" -f b {}'.format(
+        ytLink
+    )
+    print(cmd)
+    output = os.popen(cmd).read()
+    fileName = getYtFileName(ytLink)
+    print("Downloaded!")
+    upload(fileName)
+    print("Uploaded as " + fileName)
+    try:
+        os.remove(fileName)
+        print("File Removed!")
+    except:
+        print("File doesn't exist")
+    return getDownloadLink(fileName)
+
+
+def mainGet360(ytLink):
+    cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [360]" -S "res:360" -f b {}'.format(
+        ytLink
+    )
+    print(cmd)
+    output = os.popen(cmd).read()
+    fileName = getYtFileName(ytLink)
+    print("Downloaded!")
+    upload(fileName)
+    print("Uploaded as " + fileName)
+    try:
+        os.remove(fileName)
+        print("File Removed!")
+    except:
+        print("File doesn't exist")
+    return getDownloadLink(fileName)
+
+
+def mainGet480(ytLink):
+    cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [480]" -S "res:480" -f b {}'.format(
         ytLink
     )
     print(cmd)
