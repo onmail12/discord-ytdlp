@@ -19,7 +19,7 @@ def getDownloadLink(fileName):
 
 
 def mainGet(ytLink):
-    cmd = 'python3 yt-dlp -o -S "res:1080" "%(title)s.%(ext)s" -f b {}'.format(ytLink)
+    cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s" -S "res:1080" -f b {}'.format(ytLink)
     print(cmd)
     output = os.popen(cmd).read()
     fileName = getYtFileName(ytLink)
