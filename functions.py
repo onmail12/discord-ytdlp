@@ -22,12 +22,9 @@ def mainGet(ytLink):
     cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s" -f b {}'.format(ytLink)
     print(cmd)
     output = os.popen(cmd).read()
-
     fileName = getYtFileName(ytLink)
-
     print("Downloaded!")
     upload(fileName)
-    print("Uploaded")
     print("Uploaded as " + fileName)
     try:
         os.remove(fileName)
