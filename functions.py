@@ -20,13 +20,10 @@ def getDownloadLink(fileName):
 
 def mainGetBest(ytLink):
     cmd = 'python3 yt-dlp -o "%(title)s.%(ext)s [best]" -f b* {}'.format(ytLink)
-    fileName = (
-        'python3 yt-dlp --get-filename -o "%(title)s.%(ext)s [best]" -f b* {}'.format(
-            ytLink
-        )
-    ).strip("\n")
+    cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s.%(ext)s [best]" -f b* {}'.format(ytLink)
     print(cmd)
     output = os.popen(cmd).read()
+    fileName = os.popen(cmd2).read()
     print("Downloaded!")
     upload(fileName)
     print("Uploaded as " + fileName)
