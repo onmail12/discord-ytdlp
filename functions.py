@@ -27,6 +27,14 @@ def getDownloadLink(fileName):
     return str(os.popen(cmd).read())
 
 
+def speedtest():
+    print("testing speed...")
+    cmd = "python3 speedtest-cli --simple"
+    output = str(os.popen(cmd).read())
+    return output
+    print("speedtested")
+
+
 def mainGetBest(ytLink):
     cmd = 'python3 yt-dlp -o "%(title)s best.%(ext)s" -f b* {}'.format(getYtId(ytLink))
     cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s best.%(ext)s" -f b* {}'.format(

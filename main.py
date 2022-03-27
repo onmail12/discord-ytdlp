@@ -49,5 +49,8 @@ async def on_message(message):
     elif message.content == "dl help":
         await message.channel.send("dl [resolution] [link]\n**all args required**")
 
+    elif message.content == "dl speedtest":
+        await message.channel.send(speedtest())
+
 
 client.run(TOKEN)
