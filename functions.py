@@ -2,6 +2,34 @@ import os
 import re
 
 
+def upload(fileName):
+    cmd = './rclone copy "{}" GDrive:'.format(fileName)
+    print("upload " + cmd)
+    return str(os.popen(cmd).read())
+
+
+def getDownloadLink(fileName):
+    cmd = './rclone link GDrive:"{}"'.format(fileName)
+    print("getDownloadLink ", cmd)
+    return str(os.popen(cmd).read())
+
+
+def removeLocal(fileName):
+    try:
+        os.remove(fileName)
+        print("File Removed!")
+    except:
+        print("File doesn't exist")
+
+
+def speedtest():
+    print("testing speed...")
+    cmd = "python3 speedtest-cli --simple"
+    output = str(os.popen(cmd).read())
+    print("speedtest done!")
+    return output
+
+
 def getYtId(ytLink):
     return re.search(
         "((?<=(v|V)/)|(?<=be/)|(?<=(\?|\&)v=)|(?<=embed/))([\w-]+)", ytLink
@@ -15,31 +43,12 @@ def getYtFileName(ytLink):
     return str(os.popen(cmd).read()).strip("\n")
 
 
-def upload(fileName):
-    cmd = './rclone copy "{}" GDrive:'.format(fileName)
-    print("upload " + cmd)
-    return str(os.popen(cmd).read())
-
-
-def getDownloadLink(fileName):
-    cmd = './rclone link GDrive:"{}"'.format(fileName)
-    print("getDownloadLink ", cmd)
-    return str(os.popen(cmd).read())
-
-
-def speedtest():
-    print("testing speed...")
-    cmd = "python3 speedtest-cli --simple"
-    output = str(os.popen(cmd).read())
-    return output
-    print("speedtested")
-
-
 def mainGetBest(ytLink):
     cmd = 'python3 yt-dlp -o "%(title)s best.%(ext)s" -f b* {}'.format(getYtId(ytLink))
     cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s best.%(ext)s" -f b* {}'.format(
         getYtId(ytLink)
     )
+    print("-----getting best quality-----")
     print(cmd)
     output = os.popen(cmd).read()
     fileName = os.popen(cmd2).read().strip("\n")
@@ -59,6 +68,7 @@ def mainGet720(ytLink):
     cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s 720.%(ext)s" -f b* {}'.format(
         getYtId(ytLink)
     )
+    print("-----getting 720 quality-----")
     print(cmd)
     output = os.popen(cmd).read()
     fileName = os.popen(cmd2).read().strip("\n")
@@ -80,6 +90,7 @@ def mainGet144(ytLink):
     cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s 144.%(ext)s" -S "res:144" -f b {}'.format(
         getYtId(ytLink)
     )
+    print("-----getting 144 quality-----")
     print(cmd)
     output = os.popen(cmd).read()
     fileName = os.popen(cmd2).read().strip("\n")
@@ -101,6 +112,7 @@ def mainGet240(ytLink):
     cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s 240.%(ext)s" -S "res:240" -f b {}'.format(
         getYtId(ytLink)
     )
+    print("-----getting 240 quality-----")
     print(cmd)
     output = os.popen(cmd).read()
     fileName = os.popen(cmd2).read().strip("\n")
@@ -122,6 +134,7 @@ def mainGet360(ytLink):
     cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s 360.%(ext)s" -S "res:360" -f b {}'.format(
         getYtId(ytLink)
     )
+    print("-----getting 360 quality-----")
     print(cmd)
     output = os.popen(cmd).read()
     fileName = os.popen(cmd2).read().strip("\n")
@@ -143,6 +156,7 @@ def mainGet480(ytLink):
     cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s 480.%(ext)s" -S "res:480" -f b {}'.format(
         getYtId(ytLink)
     )
+    print("-----getting 480 quality-----")
     print(cmd)
     output = os.popen(cmd).read()
     fileName = os.popen(cmd2).read().strip("\n")
@@ -154,4 +168,34 @@ def mainGet480(ytLink):
         print("File Removed!")
     except:
         print("File doesn't exist")
+    return getDownloadLink(fileName)
+
+
+# ----------------------------- spot DL ----------------------------------- #
+
+
+def getSpotFileName(cmdOutput):
+    return cmdOutput.split('"')[1]
+
+
+def mainSpot(spotLink):
+    cmd = "spotdl {}".format(spotLink)
+    print(cmd)
+    try:
+        output = os.popen(cmd).read()
+        print(output)
+    except:
+        return "ERROR download func"
+
+    fileName = getSpotFileName(output) + ".mp3"
+    print("Downloading...")
+    print("Downloaded as {}".format(fileName))
+    print("Uploading {}".format(fileName))
+    try:
+        upload(fileName)
+        print("Uploaded!")
+    except:
+        return "ERROR upload func"
+    removeLocal(fileName)
+    print("TASK DONE!")
     return getDownloadLink(fileName)

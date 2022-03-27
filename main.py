@@ -46,11 +46,31 @@ async def on_message(message):
         print(message.content)
         await message.channel.send(mainGet144(message.content))
 
+    # ---------------------------------------- SPOT-DL --------------------------------------------------
+
+    elif message.content.startswith("dl spot "):
+        message.content = message.content.split()[2]
+        if "playlist" not in message.content:
+            await message.channel.send(mainSpot(message.content))
+        else:
+            await message.channel.send(
+                "Playlist is not supported yet. tar besok dikerjakan"
+            )
+
+        if "album" in message.content:
+            await message.channel.send(
+                "Album is not supported yet. tar besok dikerjakan"
+            )
+
+    # ---------------------------------------- MISC -----------------------------------------------------
+
     elif message.content == "dl speedtest":
         await message.channel.send(speedtest())
 
     elif message.content == "dl help":
-        await message.channel.send("dl [resolution] [link]\n**all args required**")
+        await message.channel.send(
+            "**Download Youtube Video**\n`dl [resolution] [link]` all args required\n\n**Download Spotify Track/Playlist/Album**\n`dl spot [spotify track/playlist/album link]`"
+        )
 
     elif message.content == "dl about":
         await message.channel.send(
