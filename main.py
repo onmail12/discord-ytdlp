@@ -46,11 +46,16 @@ async def on_message(message):
         print(message.content)
         await message.channel.send(mainGet144(message.content))
 
+    elif message.content == "dl speedtest":
+        await message.channel.send(speedtest())
+
     elif message.content == "dl help":
         await message.channel.send("dl [resolution] [link]\n**all args required**")
 
-    elif message.content == "dl speedtest":
-        await message.channel.send(speedtest())
+    elif message.content == "dl about":
+        await message.channel.send(
+            "Simple yt-dlp bot\nBot uploads all output files produced by yt-dlp to google drive using rclone\nHosted on heroku\n\nmade by Gouhund#3329 :thumbsup:"
+        )
 
 
 client.run(TOKEN)
