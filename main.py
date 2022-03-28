@@ -18,7 +18,6 @@ async def on_message(message):
         return
 
     authorId = "<@{}>".format(message.author.id)
-    message.content = message.content.lower()
 
     if message.content.startswith("dl 1080 "):
         message.content = message.content.split()[2]
@@ -52,15 +51,17 @@ async def on_message(message):
 
     # ---------------------------------------- SPOT-DL --------------------------------------------------
 
-    elif message.content.startswith("dl spot https://open.spotify.com/"):
+    elif message.content.startswith(
+        "dl spot https://open.spotify.com/"
+    ):  # dl spot https://open.spotify.com/track/2cFGv8v5DcbJXHEdzouFne?si=6357133757c34a74
         message.content = message.content.split()[2]
-        if message.content.startswith("https://open.spotify.com/playlist/"):
+        if message.content.startswith("https://open.spotify.com/playlist"):
             await message.channel.send(authorId + "\n" + playlistSpot(message.content))
 
-        elif message.content.startswith("https://open.spotify.com/album/"):
+        elif message.content.startswith("https://open.spotify.com/album"):
             await message.channel.send(authorId + "\n" + playlistSpot(message.content))
 
-        elif message.content.startswith("https://open.spotify.com/track/"):
+        elif message.content.startswith("https://open.spotify.com/track"):
             await message.channel.send(authorId + "\n" + mainSpot(message.content))
 
     # ---------------------------------------- MISC -----------------------------------------------------

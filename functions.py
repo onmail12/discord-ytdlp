@@ -186,12 +186,8 @@ def getSpotFileName(cmdOutput):
 def mainSpot(spotLink):
     cmd = "spotdl {}".format(spotLink)
     print(cmd)
-    try:
-        output = os.popen(cmd).read()
-        print(output)
-    except:
-        return "ERROR download func"
-
+    output = os.popen(cmd).read()
+    print("SPOTDL: " + output)
     fileName = getSpotFileName(output) + ".mp3"
     print("Downloading...")
     print("Downloaded as {}".format(fileName))
