@@ -2,7 +2,7 @@ from functions import *
 import discord
 import random
 
-TOKEN = "OTU3MTQxNzMzNTc2MTc5NzUy.Yj6dtA.pobFo_Oi69lHNfBP9eYnCUxrX9M"
+TOKEN = "OTU3MTQxNzMzNTc2MTc5NzUy.Yj6dtA.ODpnYh8UrxdE7-Hp_sdjQfRxkRs"
 client = discord.Client()
 
 
