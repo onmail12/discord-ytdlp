@@ -54,9 +54,7 @@ async def on_message(message):
             await message.channel.send(playlistSpot(message.content))
 
         elif "album" in message.content:
-            await message.channel.send(
-                "Album is not supported yet. tar besok dikerjakan"
-            )
+            await message.channel.send(playlistSpot(message.content))
 
         else:
             await message.channel.send(mainSpot(message.content))
@@ -68,7 +66,7 @@ async def on_message(message):
 
     elif message.content == "dl help":
         await message.channel.send(
-            "**Download Youtube Video**\n`dl [resolution] [link]` all args required\n\n**Download Spotify Track/Playlist/Album**\n`dl spot [spotify track/playlist/album link]`"
+            "**Download Youtube Video**\n`dl [RESOLUTION] [URL]` all args required\n\n**Download Spotify Track/Playlist/Album**\n`dl spot [TRACK/ALBUM/PLAYLIST URL]`"
         )
 
     elif message.content == "dl about":
