@@ -59,11 +59,11 @@ async def on_message(message):
         elif message.content.startswith("https://open.spotify.com/album/"):
             await message.channel.send(authorId + "\n" + playlistSpot(message.content))
 
-        elif message.content.startswith("https://open.spotify.com/track/":
+        elif message.content.startswith("https://open.spotify.com/track/"):
             await message.channel.send(authorId + "\n" + +mainSpot(message.content))
 
     # ---------------------------------------- MISC -----------------------------------------------------
-    
+
     elif message.content == "dl speedtest":
         await message.channel.send(speedtest())
 
