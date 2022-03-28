@@ -220,11 +220,11 @@ def playlistSpot(spotLink):
     os.chdir("../")
     os.system("rclone mkdir GDrive:playlist/{}".format(randomLocalValue))
     os.system("rclone copy playlist GDrive:playlist/{} -vP".format(randomLocalValue))
-    print("deleting spot dl cache...")
-    os.system("rclone delete GDrive:playlist/{}/.spotdl-cache".format(randomLocalValue))
     cmdUpload = "rclone link GDrive:playlist/{}".format(randomLocalValue)
     print(cmdUpload)
     outputCmdUpload = os.popen(cmdUpload).read()
+    print("deleting spot dl cache...")
+    os.system("rclone delete GDrive:playlist/{}/.spotdl-cache".format(randomLocalValue))
 
     # deleting local file to save space...
     os.system("rm -r playlist/*")

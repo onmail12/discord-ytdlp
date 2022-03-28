@@ -51,19 +51,19 @@ async def on_message(message):
 
     # ---------------------------------------- SPOT-DL --------------------------------------------------
 
-    elif message.content.startswith("dl spot "):
+    elif message.content.startswith("dl spot https://open.spotify.com/"):
         message.content = message.content.split()[2]
-        if "playlist" in message.content:
+        if message.content.startswith("https://open.spotify.com/playlist/"):
             await message.channel.send(authorId + "\n" + playlistSpot(message.content))
 
-        elif "album" in message.content:
+        elif message.content.startswith("https://open.spotify.com/album/"):
             await message.channel.send(authorId + "\n" + playlistSpot(message.content))
 
-        else:
-            await message.channel.send(authorId + "\n" + mainSpot(message.content))
+        elif message.content.startswith("https://open.spotify.com/track/":
+            await message.channel.send(authorId + "\n" + +mainSpot(message.content))
 
     # ---------------------------------------- MISC -----------------------------------------------------
-
+    
     elif message.content == "dl speedtest":
         await message.channel.send(speedtest())
 
