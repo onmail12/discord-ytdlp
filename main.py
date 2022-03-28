@@ -50,15 +50,16 @@ async def on_message(message):
 
     elif message.content.startswith("dl spot "):
         message.content = message.content.split()[2]
-        if "playlist" not in message.content:
-            await message.channel.send(mainSpot(message.content))
-        else:
+        if "playlist" in message.content:
             await message.channel.send(playlistSpot(message.content))
 
-        if "album" in message.content:
+        elif "album" in message.content:
             await message.channel.send(
                 "Album is not supported yet. tar besok dikerjakan"
             )
+
+        else:
+            await message.channel.send(mainSpot(message.content))
 
     # ---------------------------------------- MISC -----------------------------------------------------
 

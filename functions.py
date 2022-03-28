@@ -1,15 +1,20 @@
 import os
 import re
+import random
+
+
+def getRandom():
+    return random.random()
 
 
 def upload(fileName):
-    cmd = './rclone copy "{}" GDrive:'.format(fileName)
+    cmd = 'rclone copy "{}" GDrive:'.format(fileName)
     print("upload " + cmd)
     return str(os.popen(cmd).read())
 
 
 def getDownloadLink(fileName):
-    cmd = './rclone link GDrive:"{}"'.format(fileName)
+    cmd = 'rclone link GDrive:"{}"'.format(fileName)
     print("getDownloadLink ", cmd)
     return str(os.popen(cmd).read())
 
@@ -202,14 +207,25 @@ def mainSpot(spotLink):
 
 
 def playlistSpot(spotLink):
-    # empty playlist folder
-    cmdUpload = "./rclone delete GDrive:playlist/playlist1"
-    print(os.popen(cmdUpload).read())
+    # download
+    print("cd playlist")
+    os.chdir("playlist")
     cmd = "spotdl {}".format(spotLink)
     print(cmd)
-    try:
-        output = os.popen(cmd).read()
-        print(output)
-    except:
-        return "ERROR download func"
+    output = os.popen(cmd).read()
+    print(output)
+
     # upload
+    randomLocalValue = getRandom()
+    os.chdir("../")
+    os.system("rclone mkdir GDrive:playlist/{}".format(randomLocalValue))
+    os.system("rclone copy playlist GDrive:playlist/{} -vP".format(randomLocalValue))
+    print("deleting spot dl cache...")
+    os.system("rclone delete GDrive:playlist/{}/.spotdl-cache".format(randomLocalValue))
+    cmdUpload = "rclone link GDrive:playlist/{}".format(randomLocalValue)
+    print(cmdUpload)
+    outputCmdUpload = os.popen(cmdUpload).read()
+
+    # deleting local file to save space...
+    os.system("rm -r playlist/*")
+    return outputCmdUpload
