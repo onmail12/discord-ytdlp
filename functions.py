@@ -199,3 +199,17 @@ def mainSpot(spotLink):
     removeLocal(fileName)
     print("TASK DONE!")
     return getDownloadLink(fileName)
+
+
+def playlistSpot(spotLink):
+    # empty playlist folder
+    cmdUpload = "./rclone delete GDrive:playlist/playlist1"
+    print(os.popen(cmdUpload).read())
+    cmd = "spotdl {}".format(spotLink)
+    print(cmd)
+    try:
+        output = os.popen(cmd).read()
+        print(output)
+    except:
+        return "ERROR download func"
+    # upload

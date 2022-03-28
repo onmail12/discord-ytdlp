@@ -53,9 +53,7 @@ async def on_message(message):
         if "playlist" not in message.content:
             await message.channel.send(mainSpot(message.content))
         else:
-            await message.channel.send(
-                "Playlist is not supported yet. tar besok dikerjakan"
-            )
+            await message.channel.send(playlistSpot(message.content))
 
         if "album" in message.content:
             await message.channel.send(
