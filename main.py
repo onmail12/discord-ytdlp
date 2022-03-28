@@ -13,8 +13,11 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+
     if message.author == client.user:
         return
+
+    authorId = "<@{}>".format(message.author.id)
 
     if message.content.startswith("dl 1080 "):
         message.content = message.content.split()[2]
@@ -51,13 +54,13 @@ async def on_message(message):
     elif message.content.startswith("dl spot "):
         message.content = message.content.split()[2]
         if "playlist" in message.content:
-            await message.channel.send(playlistSpot(message.content))
+            await message.channel.send(authorId + "\n" + playlistSpot(message.content))
 
         elif "album" in message.content:
-            await message.channel.send(playlistSpot(message.content))
+            await message.channel.send(authorId + "\n" + playlistSpot(message.content))
 
         else:
-            await message.channel.send(mainSpot(message.content))
+            await message.channel.send(authorId + "\n" + mainSpot(message.content))
 
     # ---------------------------------------- MISC -----------------------------------------------------
 
@@ -73,6 +76,8 @@ async def on_message(message):
         await message.channel.send(
             "Simple yt-dlp bot\nBot uploads all output files produced by yt-dlp to google drive using rclone\nHosted on heroku\n\nmade by Gouhund#3329 :thumbsup:"
         )
+    elif message.content == "dl pingme":
+        await message.channel.send(authorId)
 
 
 client.run(TOKEN)
