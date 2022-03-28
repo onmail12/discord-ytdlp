@@ -29,7 +29,7 @@ def removeLocal(fileName):
 
 def speedtest():
     print("testing speed...")
-    cmd = "python3 speedtest-cli --simple"
+    cmd = "python speedtest-cli --simple"
     output = str(os.popen(cmd).read())
     print("speedtest done!")
     return output
@@ -42,15 +42,15 @@ def getYtId(ytLink):
 
 
 def getYtFileName(ytLink):
-    cmd = 'python3 yt-dlp --get-filename -o "%(title)s.%(ext)s" -f b {}'.format(
+    cmd = 'python yt-dlp --get-filename -o "%(title)s.%(ext)s" -f b {}'.format(
         getYtId(ytLink)
     )
     return str(os.popen(cmd).read()).strip("\n")
 
 
 def mainGetBest(ytLink):
-    cmd = 'python3 yt-dlp -o "%(title)s best.%(ext)s" -f b* {}'.format(getYtId(ytLink))
-    cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s best.%(ext)s" -f b* {}'.format(
+    cmd = 'python yt-dlp -o "%(title)s best.%(ext)s" -f b* {}'.format(getYtId(ytLink))
+    cmd2 = 'python yt-dlp --get-filename -o "%(title)s best.%(ext)s" -f b* {}'.format(
         getYtId(ytLink)
     )
     print("-----getting best quality-----")
@@ -69,8 +69,8 @@ def mainGetBest(ytLink):
 
 
 def mainGet720(ytLink):
-    cmd = 'python3 yt-dlp -o "%(title)s 720.%(ext)s" -f b {}'.format(getYtId(ytLink))
-    cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s 720.%(ext)s" -f b* {}'.format(
+    cmd = 'python yt-dlp -o "%(title)s 720.%(ext)s" -f b {}'.format(getYtId(ytLink))
+    cmd2 = 'python yt-dlp --get-filename -o "%(title)s 720.%(ext)s" -f b* {}'.format(
         getYtId(ytLink)
     )
     print("-----getting 720 quality-----")
@@ -89,10 +89,10 @@ def mainGet720(ytLink):
 
 
 def mainGet144(ytLink):
-    cmd = 'python3 yt-dlp -o "%(title)s 144.%(ext)s" -S "res:144" -f b {}'.format(
+    cmd = 'python yt-dlp -o "%(title)s 144.%(ext)s" -S "res:144" -f b {}'.format(
         getYtId(ytLink)
     )
-    cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s 144.%(ext)s" -S "res:144" -f b {}'.format(
+    cmd2 = 'python yt-dlp --get-filename -o "%(title)s 144.%(ext)s" -S "res:144" -f b {}'.format(
         getYtId(ytLink)
     )
     print("-----getting 144 quality-----")
@@ -111,10 +111,10 @@ def mainGet144(ytLink):
 
 
 def mainGet240(ytLink):
-    cmd = 'python3 yt-dlp -o "%(title)s 240.%(ext)s" -S "res:240" -f b {}'.format(
+    cmd = 'python yt-dlp -o "%(title)s 240.%(ext)s" -S "res:240" -f b {}'.format(
         getYtId(ytLink)
     )
-    cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s 240.%(ext)s" -S "res:240" -f b {}'.format(
+    cmd2 = 'python yt-dlp --get-filename -o "%(title)s 240.%(ext)s" -S "res:240" -f b {}'.format(
         getYtId(ytLink)
     )
     print("-----getting 240 quality-----")
@@ -133,10 +133,10 @@ def mainGet240(ytLink):
 
 
 def mainGet360(ytLink):
-    cmd = 'python3 yt-dlp -o "%(title)s 360.%(ext)s" -S "res:360" -f b {}'.format(
+    cmd = 'python yt-dlp -o "%(title)s 360.%(ext)s" -S "res:360" -f b {}'.format(
         getYtId(ytLink)
     )
-    cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s 360.%(ext)s" -S "res:360" -f b {}'.format(
+    cmd2 = 'python yt-dlp --get-filename -o "%(title)s 360.%(ext)s" -S "res:360" -f b {}'.format(
         getYtId(ytLink)
     )
     print("-----getting 360 quality-----")
@@ -155,10 +155,10 @@ def mainGet360(ytLink):
 
 
 def mainGet480(ytLink):
-    cmd = 'python3 yt-dlp -o "%(title)s 480.%(ext)s" -S "res:480" -f b {}'.format(
+    cmd = 'python yt-dlp -o "%(title)s 480.%(ext)s" -S "res:480" -f b {}'.format(
         getYtId(ytLink)
     )
-    cmd2 = 'python3 yt-dlp --get-filename -o "%(title)s 480.%(ext)s" -S "res:480" -f b {}'.format(
+    cmd2 = 'python yt-dlp --get-filename -o "%(title)s 480.%(ext)s" -S "res:480" -f b {}'.format(
         getYtId(ytLink)
     )
     print("-----getting 480 quality-----")
