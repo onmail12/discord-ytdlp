@@ -18,6 +18,7 @@ async def on_message(message):
         return
 
     authorId = "<@{}>".format(message.author.id)
+    message.content = message.content.lower()
 
     if message.content.startswith("dl 1080 "):
         message.content = message.content.split()[2]
@@ -60,7 +61,7 @@ async def on_message(message):
             await message.channel.send(authorId + "\n" + playlistSpot(message.content))
 
         elif message.content.startswith("https://open.spotify.com/track/"):
-            await message.channel.send(authorId + "\n" + +mainSpot(message.content))
+            await message.channel.send(authorId + "\n" + mainSpot(message.content))
 
     # ---------------------------------------- MISC -----------------------------------------------------
 
