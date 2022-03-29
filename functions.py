@@ -225,3 +225,33 @@ def playlistSpot(spotLink):
     # deleting local file to save space...
     os.system("rm -r playlist/*")
     return outputCmdUpload
+
+
+# ----------------------INSTAGRAM (YT-DLP)----------------
+
+
+def vidInsta(instaLink):
+    cmd = "yt-dlp {}".format(instaLink)
+    output = str(os.popen(cmd).read())
+    fileName = (
+        output.split("[download]")[1]
+        .replace(" has already been downloaded", "")
+        .strip(" ")
+        .strip("\n")
+    )
+    upload(fileName)
+    return getDownloadLink(fileName)
+
+
+def vidInstaDc(instaLink):
+    cmd = "yt-dlp {}".format(instaLink)
+    output = str(os.popen(cmd).read())
+    fileName = (
+        output.split("[download]")[1]
+        .replace(" has already been downloaded", "")
+        .strip(" ")
+        .strip("\n")
+        .strip("Destination: ")
+    )
+    print(fileName)
+    return fileName

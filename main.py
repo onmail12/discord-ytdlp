@@ -48,8 +48,38 @@ async def on_message(message):
         message.content = message.content.split()[2]
         print(message.content)
         await message.channel.send(mainGet144(message.content))
+    # ---------------------------------------- INSTAGRAM (YT-DLP) --------------------------------------------------
 
-    # ---------------------------------------- SPOT-DL --------------------------------------------------
+    elif message.content.startswith("dl https://www.instagram.com/"):
+        print(message.content)
+        instaLink = message.content.split()[1]
+        try:
+            uploadTo = message.content.split()[2]
+        except:
+            uploadTo = ""
+
+        if uploadTo == "gd":
+            await message.channel.send(vidInsta(instaLink))
+
+        elif uploadTo == "dc":
+            fileName = vidInstaDc(instaLink)
+            try:
+                await message.channel.send(file=discord.File("{}".format(fileName)))
+            except:
+                await message.channel.send(
+                    "File is bigger than 8 mb, beli nitro awkoakwoakowa"
+                )
+
+        elif uploadTo == "":
+            fileName = vidInstaDc(instaLink)
+            try:
+                await message.channel.send(file=discord.File("{}".format(fileName)))
+            except:
+                await message.channel.send(
+                    "File is bigger than 8 mb, beli nitro awkoakwoakowa"
+                )
+
+    # ---------------------------------------- SPOT-DL ----------------------------------------------------
 
     elif message.content.startswith(
         "dl spot https://open.spotify.com/"
@@ -71,7 +101,7 @@ async def on_message(message):
 
     elif message.content == "dl help":
         await message.channel.send(
-            "**Download Youtube Video**\n`dl [RESOLUTION] [URL]` all args required\n\n**Download Spotify Track/Playlist/Album**\n`dl spot [TRACK/ALBUM/PLAYLIST URL]`"
+            "**Download Youtube Video**\n`dl [RESOLUTION] [URL]` all args required\n\n**Download Spotify Track/Playlist/Album**\n`dl spot [TRACK/ALBUM/PLAYLIST URL]`\n\n**Download Instagram Video**\n`dl [INSTAGRAM VIDEO URL] [upload to gd/dc]` gd is google drive | dc is discord"
         )
 
     elif message.content == "dl about":
