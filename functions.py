@@ -253,5 +253,6 @@ def vidInstaDc(instaLink):
         .strip("\n")
         .strip("Destination: ")
     )
+    removeLocal(fileName)
     print(fileName)
     return fileName

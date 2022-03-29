@@ -81,10 +81,9 @@ async def on_message(message):
 
     # ---------------------------------------- SPOT-DL ----------------------------------------------------
 
-    elif message.content.startswith(
-        "dl spot https://open.spotify.com/"
-    ):  # dl spot https://open.spotify.com/track/2cFGv8v5DcbJXHEdzouFne?si=6357133757c34a74
+    elif message.content.startswith("dl spot https://open.spotify.com/"):
         message.content = message.content.split()[2]
+
         if message.content.startswith("https://open.spotify.com/playlist"):
             await message.channel.send(authorId + "\n" + playlistSpot(message.content))
 
@@ -101,7 +100,7 @@ async def on_message(message):
 
     elif message.content == "dl help":
         await message.channel.send(
-            "**Download Youtube Video**\n`dl [RESOLUTION] [URL]` all args required\n\n**Download Spotify Track/Playlist/Album**\n`dl spot [TRACK/ALBUM/PLAYLIST URL]`\n\n**Download Instagram Video**\n`dl [INSTAGRAM VIDEO URL] [upload to gd/dc]` gd is google drive | dc is discord"
+            "**Download Youtube Video**\n`dl [RESOLUTION] [URL]` all args required\n\n**Download Spotify Track/Playlist/Album**\n`dl spot [TRACK/ALBUM/PLAYLIST URL]`\n\n**Download Instagram Video**\n`dl [INSTAGRAM VIDEO URL] [gd/dc]` gd is google drive | dc is discord"
         )
 
     elif message.content == "dl about":
