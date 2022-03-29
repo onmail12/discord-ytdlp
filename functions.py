@@ -2,6 +2,7 @@ import os
 import re
 import random
 from pystreamable import StreamableApi
+import time
 
 
 def getRandom():
@@ -272,4 +273,5 @@ def vidInstaStream(instaLink):
     streamable = StreamableApi("protonu1122@tutanota.com", "Protonuonmail12.")
     cmdUpload = streamable.upload_video("{}".format(fileName))
     send = "https://streamable.com/" + cmdUpload["shortcode"]
+    time.sleep(10)
     return send
