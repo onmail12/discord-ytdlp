@@ -232,15 +232,20 @@ def playlistSpot(spotLink):
 # ----------------------INSTAGRAM (YT-DLP)----------------
 
 
-def vidInsta(instaLink):
-    cmd = "yt-dlp {}".format(instaLink)
-    output = str(os.popen(cmd).read())
+def getInstaFileName(output):
     fileName = (
         output.split("[download]")[1]
         .replace(" has already been downloaded", "")
         .strip(" ")
         .strip("\n")
     )
+    return fileName
+
+
+def vidInsta(instaLink):
+    cmd = "yt-dlp {}".format(instaLink)
+    output = str(os.popen(cmd).read())
+    fileName = getInstaFileName(output)
     upload(fileName)
     return getDownloadLink(fileName)
 
@@ -248,13 +253,7 @@ def vidInsta(instaLink):
 def vidInstaDc(instaLink):
     cmd = "yt-dlp {}".format(instaLink)
     output = str(os.popen(cmd).read())
-    fileName = (
-        output.split("[download]")[1]
-        .replace(" has already been downloaded", "")
-        .strip(" ")
-        .strip("\n")
-        .strip("Destination: ")
-    )
+    fileName = getInstaFileName(output)
     removeLocal(fileName)
     print(fileName)
     return fileName
@@ -263,13 +262,7 @@ def vidInstaDc(instaLink):
 def vidInstaStream(instaLink):
     cmd = "yt-dlp {}".format(instaLink)
     output = os.popen(cmd).read()
-    fileName = (
-        output.split("[download]")[1]
-        .replace(" has already been downloaded", "")
-        .strip(" ")
-        .strip("\n")
-        .strip("Destination: ")
-    )
+    fileName = getInstaFileName(output)
     streamable = StreamableApi("protonu1122@tutanota.com", "Protonuonmail12.")
     cmdUpload = streamable.upload_video("{}".format(fileName))
     send = "https://streamable.com/" + cmdUpload["shortcode"]

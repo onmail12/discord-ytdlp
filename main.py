@@ -22,32 +22,32 @@ async def on_message(message):
     if message.content.startswith("dl 1080 "):
         message.content = message.content.split()[2]
         print(message.content)
-        await message.channel.send(mainGetBest(message.content))
+        await message.channel.send(authorId + "\n" + mainGetBest(message.content))
 
     elif message.content.startswith("dl 720 "):
         message.content = message.content.split()[2]
         print(message.content)
-        await message.channel.send(mainGet720(message.content))
+        await message.channel.send(authorId + "\n" + mainGet720(message.content))
 
     elif message.content.startswith("dl 480 "):
         message.content = message.content.split()[2]
         print(message.content)
-        await message.channel.send(mainGet480(message.content))
+        await message.channel.send(authorId + "\n" + mainGet480(message.content))
 
     elif message.content.startswith("dl 360 "):
         message.content = message.content.split()[2]
         print(message.content)
-        await message.channel.send(mainGet360(message.content))
+        await message.channel.send(authorId + "\n" + mainGet360(message.content))
 
     elif message.content.startswith("dl 240 "):
         message.content = message.content.split()[2]
         print(message.content)
-        await message.channel.send(mainGet240(message.content))
+        await message.channel.send(authorId + "\n" + mainGet240(message.content))
 
     elif message.content.startswith("dl 144 "):
         message.content = message.content.split()[2]
         print(message.content)
-        await message.channel.send(mainGet144(message.content))
+        await message.channel.send(authorId + "\n" + mainGet144(message.content))
     # ---------------------------------------- INSTAGRAM (YT-DLP) --------------------------------------------------
 
     elif message.content.startswith("dl https://www.instagram.com/"):
@@ -67,12 +67,14 @@ async def on_message(message):
                 await message.channel.send(file=discord.File("{}".format(fileName)))
             except:
                 await message.channel.send(
-                    "File is bigger than 8 mb, beli nitro awkoakwoakowa"
+                    authorId
+                    + "\n"
+                    + "File is bigger than 8 mb, beli nitro awkoakwoakowa"
                 )
 
         elif uploadTo == "":
             instaLink = message.content.split()[1]
-            await message.channel.send(vidInstaStream(instaLink))
+            await message.channel.send(authorId + "\n" + vidInstaStream(instaLink))
 
     # ---------------------------------------- SPOT-DL ----------------------------------------------------
 
@@ -91,16 +93,20 @@ async def on_message(message):
     # ---------------------------------------- MISC -----------------------------------------------------
 
     elif message.content == "dl speedtest":
-        await message.channel.send(speedtest())
+        await message.channel.send(authorId + "\n" + speedtest())
 
     elif message.content == "dl help":
         await message.channel.send(
-            "**Download Youtube Video**\n`dl [RESOLUTION] [URL]` all args required\n\n**Download Spotify Track/Playlist/Album**\n`dl spot [TRACK/ALBUM/PLAYLIST URL]`\n\n**Download Instagram Video**\n`dl [INSTAGRAM VIDEO URL] [gd/dc]` gd is google drive | dc is discord"
+            authorId
+            + "\n"
+            + "**Download Youtube Video**\n`dl [RESOLUTION] [URL]` all args required\n\n**Download Spotify Track/Playlist/Album**\n`dl spot [TRACK/ALBUM/PLAYLIST URL]`\n\n**Download Instagram Video**\n`dl [INSTAGRAM VIDEO URL] [gd/dc/(empty)]` gd is google drive | dc is discord | leave empty is streamable (embed support)"
         )
 
     elif message.content == "dl about":
         await message.channel.send(
-            "Simple yt-dlp bot\nBot uploads all output files produced by yt-dlp to google drive using rclone\nHosted on heroku\n\nmade by Gouhund#3329 :thumbsup:"
+            authorId
+            + "\n"
+            + "Simple yt-dlp bot\nBot uploads all output files produced by yt-dlp to google drive using rclone\nHosted on heroku\n\nmade by Gouhund#3329 :thumbsup:"
         )
     elif message.content == "dl pingme":
         await message.channel.send(authorId)
