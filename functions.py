@@ -275,3 +275,4 @@ def vidInstaStream(instaLink):
     send = "https://streamable.com/" + cmdUpload["shortcode"]
     time.sleep(10)
     return send
+    # idk
