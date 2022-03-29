@@ -71,13 +71,8 @@ async def on_message(message):
                 )
 
         elif uploadTo == "":
-            fileName = vidInstaDc(instaLink)
-            try:
-                await message.channel.send(file=discord.File("{}".format(fileName)))
-            except:
-                await message.channel.send(
-                    "File is bigger than 8 mb, beli nitro awkoakwoakowa"
-                )
+            instaLink = message.content.split()[1]
+            await message.channel.send(vidInstaStream(instaLink))
 
     # ---------------------------------------- SPOT-DL ----------------------------------------------------
 
