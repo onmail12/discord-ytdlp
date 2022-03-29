@@ -1,3 +1,5 @@
 git add . -f
-git commit -am "auto push"
+echo -n "Commit: "
+read commit
+git commit -am $commit
 git push heroku master
