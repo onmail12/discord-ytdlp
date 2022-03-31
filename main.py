@@ -9,6 +9,9 @@ client = discord.Client()
 @client.event
 async def on_ready():
     print("BOT READY: {0.user}".format(client))
+    await client.change_presence(
+        activity=discord.Activity(type=discord.ActivityType.listening, name="dl help")
+    )
 
 
 @client.event

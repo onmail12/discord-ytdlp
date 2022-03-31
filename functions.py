@@ -4,6 +4,8 @@ import random
 from pystreamable import StreamableApi
 import time
 
+streamable = StreamableApi("protonu1122@tutanota.com", "Protonuonmail12.")
+
 
 def getRandom():
     return random.random()
@@ -238,7 +240,9 @@ def getInstaFileName(output):
         .replace(" has already been downloaded", "")
         .strip(" ")
         .strip("\n")
+        .replace("Destination: ", "")
     )
+    print(fileName)
     return fileName
 
 
@@ -263,9 +267,8 @@ def vidInstaStream(instaLink):
     cmd = "yt-dlp {}".format(instaLink)
     output = os.popen(cmd).read()
     fileName = getInstaFileName(output)
-    streamable = StreamableApi("protonu1122@tutanota.com", "Protonuonmail12.")
     cmdUpload = streamable.upload_video("{}".format(fileName))
+    print(cmdUpload)
     send = "https://streamable.com/" + cmdUpload["shortcode"]
     time.sleep(10)
     return send
-    # ids
