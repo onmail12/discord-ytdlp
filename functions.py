@@ -274,7 +274,7 @@ def vidInstaStream(instaLink):
     return send
 
 
-# ----------------------PYTORRENT----------------
+# ----------------------PYTORRENT-----------------
 
 
 def downloadTorrent(downloadLink):
