@@ -118,6 +118,11 @@ async def on_message(message):
             await message.add_reaction("👍")
             await message.channel.send(authorId + "\n" + mainSpot(message.content))
             await message.add_reaction("✅")
+    # ---------------------------------------- PYTORRENT -----------------------------------------------------
+
+    if message.content.startswith("dl torrent "):
+        downloadLink = message.content.split()[2]
+        await message.channel.send(downloadTorrent(downloadLink))
 
     # ---------------------------------------- MISC -----------------------------------------------------
 

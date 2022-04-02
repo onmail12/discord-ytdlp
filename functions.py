@@ -272,4 +272,32 @@ def vidInstaStream(instaLink):
     send = "https://streamable.com/" + cmdUpload["shortcode"]
     time.sleep(10)
     return send
-    #
+
+
+# ----------------------PYTORRENT----------------
+
+
+def downloadTorrent(downloadLink):
+    os.chdir("torrent")
+    print("----- CD-ed to torrent----")
+    # download .torrent file
+    os.system("wget {} -O torrent.torrent".format(downloadLink))
+    print("torrent curled to torrent.torrent")
+    # main torrent download
+    os.system("rain download -t torrent.torrent")
+    # get random value
+    randomLocalValue = getRandom()
+    # deleting temp files
+    os.system("rm *.resume")
+    os.system("rm torrent.torrent")
+    # rclone
+    os.system("rclone mkdir GDrive:torrent/{}".format(randomLocalValue))
+    os.system('rclone copy "" GDrive:torrent/{} -vP'.format(randomLocalValue))
+    cmdGetLink = "rclone link GDrive:torrent/{}".format(randomLocalValue)
+    print(cmdGetLink)
+    outputCmdGetLink = os.popen(cmdGetLink).read()
+    # goes back to root app
+    os.chdir("../")
+    # removing local file
+    os.system("rm -r torrent/*")
+    return outputCmdGetLink
