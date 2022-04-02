@@ -293,12 +293,12 @@ def downloadTorrent(downloadLink):
     # rclone
     os.system("rclone mkdir GDrive:torrent/{}".format(randomLocalValue))
     print(("rclone mkdir GDrive:torrent/{}".format(randomLocalValue)))
-    os.system('rclone copy "" GDrive:torrent/{} -vP'.format(randomLocalValue))
+    os.chdir("../")
+    os.system("rclone copy torrent GDrive:torrent/{} -vP".format(randomLocalValue))
     cmdGetLink = "rclone link GDrive:torrent/{}".format(randomLocalValue)
     print(cmdGetLink)
     outputCmdGetLink = os.popen(cmdGetLink).read()
     # cd back to app's root
-    os.chdir("../")
     # removing local file
-    os.system("rm -r torrent/*")
+    os.system("rm -rf torrent")
     return outputCmdGetLink
