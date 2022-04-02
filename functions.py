@@ -278,6 +278,7 @@ def vidInstaStream(instaLink):
 
 
 def downloadTorrent(downloadLink):
+    os.system("mkdir torrent")
     os.chdir("torrent")
     print("----- CD-ed to torrent----")
     # download .torrent file
