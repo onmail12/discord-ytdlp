@@ -285,19 +285,19 @@ def downloadTorrent(downloadLink):
     os.system("wget {} -O torrent.torrent".format(downloadLink))
     print("torrent curled to torrent.torrent")
     # main torrent download
-    os.system("rain download -t torrent.torrent")
+    os.system("aria2c torrent.torrent --seed-time=0")
     # get random value
     randomLocalValue = getRandom()
     # deleting temp files
-    os.system("rm *.resume")
     os.system("rm torrent.torrent")
     # rclone
     os.system("rclone mkdir GDrive:torrent/{}".format(randomLocalValue))
+    print(("rclone mkdir GDrive:torrent/{}".format(randomLocalValue)))
     os.system('rclone copy "" GDrive:torrent/{} -vP'.format(randomLocalValue))
     cmdGetLink = "rclone link GDrive:torrent/{}".format(randomLocalValue)
     print(cmdGetLink)
     outputCmdGetLink = os.popen(cmdGetLink).read()
-    # goes back to root app
+    # cd back to app's root
     os.chdir("../")
     # removing local file
     os.system("rm -r torrent/*")
