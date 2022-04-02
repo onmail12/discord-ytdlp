@@ -124,6 +124,10 @@ async def on_message(message):
         downloadLink = message.content.split()[2]
         await message.channel.send(downloadTorrent(downloadLink))
 
+    if message.content.startswith("dl torrentlocal "):
+        downloadLink = message.content.split()[2]
+        await message.channel.send(downloadTorrent(downloadLink))
+
     # ---------------------------------------- MISC -----------------------------------------------------
 
     if message.content == "dl speedtest":
