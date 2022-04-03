@@ -7,6 +7,18 @@ import time
 streamable = StreamableApi("protonu1122@tutanota.com", "Protonuonmail12.")
 
 
+def run_command(command):
+    process = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE)
+    while True:
+        output = process.stdout.readline().decode()
+        if output == "" and process.poll() is not None:
+            break
+        if output:
+            print(output.strip())
+    rc = process.poll()
+    return rc
+
+
 def getRandom():
     return random.random()
 
@@ -281,15 +293,20 @@ def downloadTorrent(downloadLink):
     os.system("mkdir torrent")
     os.chdir("torrent")
     print("----- CD-ed to torrent----")
+
     # download .torrent file
     os.system("wget {} -O torrent.torrent".format(downloadLink))
-    print("torrent curled to torrent.torrent")
+    print("torrent WGET-ed to torrent.torrent")
+
     # main torrent download
-    os.system("aria2c torrent.torrent --seed-time=0")
+    return run_command("aria2c torrent.torrent --seed-time=0")
+
     # get random value
     randomLocalValue = getRandom()
-    # deleting temp files
+
+    # delete temp files
     os.system("rm torrent.torrent")
+
     # rclone
     os.system("rclone mkdir GDrive:torrent/{}".format(randomLocalValue))
     print(("rclone mkdir GDrive:torrent/{}".format(randomLocalValue)))
@@ -298,7 +315,14 @@ def downloadTorrent(downloadLink):
     cmdGetLink = "rclone link GDrive:torrent/{}".format(randomLocalValue)
     print(cmdGetLink)
     outputCmdGetLink = os.popen(cmdGetLink).read()
-    # cd back to app's root
+
     # removing local file
     os.system("rm -rf torrent")
     return outputCmdGetLink
+    print("TASK DONE")
+
+
+def testFunc():
+    print("hello")
+    return "hey"
+    return "hey2"

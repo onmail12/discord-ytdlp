@@ -121,9 +121,10 @@ async def on_message(message):
     # ---------------------------------------- ARIA2C-TORRENT -----------------------------------------------------
 
     if message.content.startswith("dl torrent "):
+        await message.add_reaction("👍")
         downloadLink = message.content.split()[2]
-        await message.channel.send(downloadTorrent(downloadLink))
-
+        await message.channel.send(authorId + "\n" + downloadTorrent(downloadLink))
+        await message.add_reaction("✅")
     # ---------------------------------------- MISC -----------------------------------------------------
 
     if message.content == "dl speedtest":
@@ -149,6 +150,9 @@ async def on_message(message):
 
     if message.content == "dl react":
         await message.add_reaction("👍")
+
+    if message.content == "dl test":
+        await message.channel.send(testFunc())
 
 
 client.run(TOKEN)
