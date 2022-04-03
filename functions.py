@@ -3,22 +3,8 @@ import re
 import random
 from pystreamable import StreamableApi
 import time
-import subprocess
-import shlex
 
 streamable = StreamableApi("protonu1122@tutanota.com", "Protonuonmail12.")
-
-
-def run_command(command):
-    process = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE)
-    while True:
-        output = process.stdout.readline().decode()
-        if output == "" and process.poll() is not None:
-            break
-        if output:
-            print(output.strip())
-    rc = process.poll()
-    return rc
 
 
 def getRandom():
@@ -301,8 +287,7 @@ def downloadTorrent(downloadLink):
     print("torrent WGET-ed to torrent.torrent")
 
     # main torrent download
-    return run_command("aria2c torrent.torrent --seed-time=0")
-
+    os.system("aria2c torrent.torrent --seed-time=0")
     # get random value
     randomLocalValue = getRandom()
 
