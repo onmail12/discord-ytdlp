@@ -3,6 +3,8 @@ import re
 import random
 from pystreamable import StreamableApi
 import time
+import subprocess
+import shlex
 
 streamable = StreamableApi("protonu1122@tutanota.com", "Protonuonmail12.")
 
