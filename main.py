@@ -142,7 +142,7 @@ async def on_message(message):
         await message.channel.send(
             authorId
             + "\n"
-            + "**Download Youtube Video**\n`dl [RESOLUTION] [URL]` all args required\n\n**Download Spotify Track/Playlist/Album**\n`dl spot [TRACK/ALBUM/PLAYLIST URL]`\n\n**Download Instagram Video**\n`dl [INSTAGRAM VIDEO URL] [gd/dc/(empty)]` gd is google drive | dc is discord | leave empty is streamable (embed support)\n`dl torrent [TORRENT_URL]`"
+            + "**Download Youtube Video**\n`dl [(1080/720/480/360/240/144) / audio] [URL]` all args required\n\n**Download Spotify Track/Playlist/Album**\n`dl spot [TRACK/ALBUM/PLAYLIST_URL]`\n\n**Download Instagram Video**\n`dl [INSTAGRAM VIDEO URL] [gd/dc/(empty)]`\ngd is google drive | dc is discord | leave empty is streamable (embed support)\n`dl torrent [TORRENT_URL]`"
         )
         await message.add_reaction("✅")
 

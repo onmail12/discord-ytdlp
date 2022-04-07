@@ -40,9 +40,12 @@ def speedtest():
 
 
 def getYtId(ytLink):
-    return re.search(
-        "((?<=(v|V)/)|(?<=be/)|(?<=(\?|\&)v=)|(?<=embed/))([\w-]+)", ytLink
-    ).group()
+    try:
+        return re.search(
+            "((?<=(v|V)/)|(?<=be/)|(?<=(\?|\&)v=)|(?<=embed/))([\w-]+)", ytLink
+        ).group()
+    except AttributeError:
+        return "Please use the command correctly\ntype `dl help`"
 
 
 def getYtFileName(ytLink):
