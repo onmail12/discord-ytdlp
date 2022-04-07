@@ -180,6 +180,23 @@ def mainGet480(ytLink):
     return getDownloadLink(fileName)
 
 
+def mainGetAudio(ytLink):
+    cmd = "yt-dlp -x --audio-format mp3 {}".format(getYtId(ytLink))
+    cmd2 = "yt-dlp -x --get-filename --audio-format mp3 {}".format(getYtId(ytLink))
+    print(cmd)
+    output = os.popen(cmd).read()
+    fileName = os.popen(cmd2).read().strip("\n").replace("webm", "mp3")
+    print("Downloaded!")
+    upload(fileName)
+    print(fileName)
+    try:
+        os.remove(fileName)
+        print("File Removed!")
+    except:
+        print("File doesn't exist")
+    return getDownloadLink(fileName)
+
+
 # ----------------------------- spot DL ----------------------------------- #
 
 
@@ -306,7 +323,6 @@ def downloadTorrent(downloadLink):
     # removing local file
     os.system("rm -rf torrent")
     return outputCmdGetLink
-    print("TASK DONE")
 
 
 def testFunc():

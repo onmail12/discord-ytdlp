@@ -64,6 +64,13 @@ async def on_message(message):
         print(message.content)
         await message.channel.send(authorId + "\n" + mainGet144(message.content))
         await message.add_reaction("✅")
+
+    elif message.content.startswith("dl audio "):
+        await message.add_reaction("👍")
+        message.content = message.content.split()[2]
+        print(message.content)
+        await message.channel.send(authorId + "\n" + mainGetAudio(message.content))
+        await message.add_reaction("✅")
     # ---------------------------------------- INSTAGRAM (YT-DLP) --------------------------------------------------
 
     if message.content.startswith("dl https://www.instagram.com/"):
@@ -135,7 +142,7 @@ async def on_message(message):
         await message.channel.send(
             authorId
             + "\n"
-            + "**Download Youtube Video**\n`dl [RESOLUTION] [URL]` all args required\n\n**Download Spotify Track/Playlist/Album**\n`dl spot [TRACK/ALBUM/PLAYLIST URL]`\n\n**Download Instagram Video**\n`dl [INSTAGRAM VIDEO URL] [gd/dc/(empty)]` gd is google drive | dc is discord | leave empty is streamable (embed support)"
+            + "**Download Youtube Video**\n`dl [RESOLUTION] [URL]` all args required\n\n**Download Spotify Track/Playlist/Album**\n`dl spot [TRACK/ALBUM/PLAYLIST URL]`\n\n**Download Instagram Video**\n`dl [INSTAGRAM VIDEO URL] [gd/dc/(empty)]` gd is google drive | dc is discord | leave empty is streamable (embed support)\n`dl torrent [TORRENT_URL]`"
         )
         await message.add_reaction("✅")
 
