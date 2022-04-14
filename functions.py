@@ -3,16 +3,17 @@ import re
 import random
 from pystreamable import StreamableApi
 import time
+import requests
 
 streamable = StreamableApi("protonu1122@tutanota.com", "Protonuonmail12.")
 
 
 def getRandom():
-    return random.random()
+    return str(random.random()).strip("0.")
 
 
-def upload(fileName):
-    cmd = 'rclone copy "{}" GDrive:'.format(fileName)
+def upload(fileName, folderName=""):
+    cmd = 'rclone copy "{}" GDrive:{}/'.format(fileName, folderName)
     print("upload " + cmd)
     return str(os.popen(cmd).read())
 
@@ -328,7 +329,48 @@ def downloadTorrent(downloadLink):
     return outputCmdGetLink
 
 
-def testFunc():
-    print("hello")
-    return "hey"
-    return "hey2"
+# ---------------------- UPSCALE -----------------
+
+
+def superRes(imgLink):
+
+    print(imgLink)
+    r = requests.post(
+        "https://api.deepai.org/api/torch-srgan",
+        data={
+            "image": "{}".format(imgLink),
+        },
+        headers={"api-key": "8ae35ffb-053e-4975-a276-0e80ab2d8e5c"},
+    )
+    print("r = ", r)
+    dlLink = r.json()["output_url"]
+    print(dlLink)
+
+    randomLocalValue = getRandom()
+    fileName = randomLocalValue + ".jpg"
+    os.system("wget {} -O {}".format(dlLink, fileName))
+    return fileName
+    # upload(randomLocalValue + ".jpg")
+    # return getDownloadLink("{}.jpg".format(randomLocalValue))
+
+
+def waifu2x(imgLink):
+
+    print(imgLink)
+    r = requests.post(
+        "https://api.deepai.org/api/waifu2x",
+        data={
+            "image": "{}".format(imgLink),
+        },
+        headers={"api-key": "8ae35ffb-053e-4975-a276-0e80ab2d8e5c"},
+    )
+    print("r = ", r)
+    dlLink = r.json()["output_url"]
+    print(dlLink)
+
+    randomLocalValue = getRandom()
+    fileName = randomLocalValue + ".jpg"
+    os.system("wget {} -O {}".format(dlLink, fileName))
+    return fileName
+    # upload(randomLocalValue + ".jpg")
+    # return getDownloadLink("{}.jpg".format(randomLocalValue))

@@ -132,6 +132,41 @@ async def on_message(message):
         downloadLink = message.content.split()[2]
         await message.channel.send(authorId + "\n" + downloadTorrent(downloadLink))
         await message.add_reaction("✅")
+
+    # ---------------------------------------- Upscaled -----------------------------------------------------
+
+    if message.content.startswith("dl upscale fsr "):
+        await message.add_reaction("👍")
+        imgLink = message.content.split()[3]
+        fileName = waifu2x(imgLink)
+        try:
+            await message.channel.send(file=discord.File("{}".format(fileName)))
+            await message.add_reaction("✅")
+
+        except:
+            await message.channel.send(
+                authorId + "\n" + "File is bigger than 8 mb, beli nitro awkoakwoakowa"
+            )
+            await message.add_reaction("✅")
+        os.system("rm *.jpg")
+        # await message.channel.send(superRes(imgLink))
+
+    if message.content.startswith("dl upscale waifu2x "):
+        await message.add_reaction("👍")
+        imgLink = message.content.split()[3]
+        # await message.channel.send(waifu2x(imgLink))
+        fileName = waifu2x(imgLink)
+        try:
+            await message.channel.send(file=discord.File("{}".format(fileName)))
+            await message.add_reaction("✅")
+
+        except:
+            await message.channel.send(
+                authorId + "\n" + "File is bigger than 8 mb, beli nitro awkoakwoakowa"
+            )
+            await message.add_reaction("✅")
+        os.system("rm *.jpg")
+
     # ---------------------------------------- MISC -----------------------------------------------------
 
     if message.content == "dl speedtest":
@@ -142,7 +177,7 @@ async def on_message(message):
         await message.channel.send(
             authorId
             + "\n"
-            + "**Download Youtube Video**\n`dl [(1080/720/480/360/240/144) / audio] [URL]` all args required\n\n**Download Spotify Track/Playlist/Album**\n`dl spot [TRACK/ALBUM/PLAYLIST_URL]`\n\n**Download Instagram Video**\n`dl [INSTAGRAM VIDEO URL] [gd/dc/(empty)]`\ngd is google drive | dc is discord | leave empty is streamable (embed support)\n`dl torrent [TORRENT_URL]`"
+            + "**Download Youtube Video**\n`dl [(1080/720/480/360/240/144) / audio] [URL]` all args required\n\n**Download Spotify Track/Playlist/Album**\n`dl spot [TRACK/ALBUM/PLAYLIST_URL]`\n\n**Download Instagram Video**\n`dl [INSTAGRAM VIDEO URL] [gd/dc/(empty)]`\ngd is google drive | dc is discord | leave empty is streamable (embed support)\n**Upload Torrent to Google Drive**`dl torrent [TORRENT_URL]`"
         )
         await message.add_reaction("✅")
 
