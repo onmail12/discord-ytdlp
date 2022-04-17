@@ -1,4 +1,5 @@
 from functions import *
+import helps
 import discord
 import random
 
@@ -169,17 +170,26 @@ async def on_message(message):
 
     # ---------------------------------------- MISC -----------------------------------------------------
 
+    if message.content == "dl help":
+        await message.channel.send(helps.main())
+
+    if message.content == "dl help youtube":
+        await message.channel.send(helps.youtube())
+
+    if message.content == "dl help spotify":
+        await message.channel.send(helps.spotify())
+
+    if message.content == "dl help instagram":
+        await message.channel.send(helps.ig())
+
+    if message.content == "dl help torrent":
+        await message.channel.send(helps.torrent())
+
+    if message.content == "dl help upscale":
+        await message.channel.send(helps.upscale())
+
     if message.content == "dl speedtest":
         await message.channel.send(authorId + "\n" + speedtest())
-
-    if message.content == "dl help":
-        await message.add_reaction("👍")
-        await message.channel.send(
-            authorId
-            + "\n"
-            + "**Download Youtube Video**\n`dl [(1080/720/480/360/240/144) / audio] [URL]` all args required\n\n**Download Spotify Track/Playlist/Album**\n`dl spot [TRACK/ALBUM/PLAYLIST_URL]`\n\n**Download Instagram Video**\n`dl [INSTAGRAM VIDEO URL] [gd/dc/(empty)]`\ngd is google drive | dc is discord | leave empty is streamable (embed support)\n**Upload Torrent to Google Drive**`dl torrent [TORRENT_URL]`"
-        )
-        await message.add_reaction("✅")
 
     if message.content == "dl about":
         await message.channel.send(

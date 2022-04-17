@@ -349,6 +349,7 @@ def superRes(imgLink):
     randomLocalValue = getRandom()
     fileName = randomLocalValue + ".jpg"
     os.system("wget {} -O {}".format(dlLink, fileName))
+
     return fileName
     # upload(randomLocalValue + ".jpg")
     # return getDownloadLink("{}.jpg".format(randomLocalValue))
