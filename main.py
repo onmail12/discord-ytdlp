@@ -114,6 +114,7 @@ async def on_message(message):
         instaLink = message.content.split()[1]
         await message.channel.send(authorId + "\n" + vidTTStream(instaLink))
         await message.add_reaction("✅")
+        os.system("rm *.jpg")
 
     if message.content.startswith("dl yt-dlp"):
         await message.add_reaction("👍")
