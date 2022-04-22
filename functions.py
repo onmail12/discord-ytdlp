@@ -295,6 +295,20 @@ def vidInstaStream(instaLink):
     return send
 
 
+# ----------------------Tiktok-----------------
+
+
+def vidTTStream(instaLink):
+    cmd = "yt-dlp {}".format(instaLink)
+    output = os.popen(cmd).read()
+    fileName = getInstaFileName(output)
+    cmdUpload = streamable.upload_video("{}".format(fileName))
+    print(cmdUpload)
+    send = "https://streamable.com/" + cmdUpload["shortcode"]
+    time.sleep(10)
+    return send
+
+
 # ----------------------PYTORRENT-----------------
 
 

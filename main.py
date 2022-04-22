@@ -107,6 +107,20 @@ async def on_message(message):
             await message.channel.send(authorId + "\n" + vidInstaStream(instaLink))
             await message.add_reaction("✅")
 
+    # ---------------------------------------- Tiktok (YT-DLP) --------------------------------------------------
+
+    if message.content.startswith("dl https://www.tiktok.com"):
+        await message.add_reaction("👍")
+        instaLink = message.content.split()[1]
+        await message.channel.send(authorId + "\n" + vidTTStream(instaLink))
+        await message.add_reaction("✅")
+
+    if message.content.startswith("dl yt-dlp"):
+        await message.add_reaction("👍")
+        instaLink = message.content.split()[2]
+        await message.channel.send(authorId + "\n" + vidTTStream(instaLink))
+        await message.add_reaction("✅")
+
     # ---------------------------------------- SPOT-DL ----------------------------------------------------
 
     if message.content.startswith("dl spot https://open.spotify.com/"):

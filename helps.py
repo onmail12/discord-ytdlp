@@ -14,7 +14,7 @@ def spotify():
 
 
 def ig():
-    a = "**Instagram Help**\n`dl [INSTAGRAM VIDEO URL] [gd/dc/(empty)]`\n\ngd will returns google drive link\ndc will send instagram video to discord\n(empty) will returns streamable.com link"
+    a = "**Instagram Help**\n`dl [INSTAGRAM VIDEO URL] [gd/dc/(empty)]`\n\ngd will return google drive link\ndc will send instagram video to discord\n(empty) will return streamable.com link"
     return a
 
 
