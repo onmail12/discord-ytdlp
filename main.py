@@ -2,8 +2,12 @@ from functions import *
 import helps
 import discord
 import random
+from dotenv import load_dotenv
+import os
 
-TOKEN = "OTU3MTQxNzMzNTc2MTc5NzUy.Yj6dtA.ODpnYh8UrxdE7-Hp_sdjQfRxkRs"
+load_dotenv()
+
+TOKEN = os.getenv("BOT_TOKEN")s
 client = discord.Client()
 
 
